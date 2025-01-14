@@ -1,0 +1,372 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: "Poppins", sans-serif;
+    background-color: #1e293b;
+    /* Subtle dark background */
+    color: #f8fafc;
+    /* Light text for readability */
+    transition: background-color 0.3s ease;
+    /* Transition for body background */
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
+
+}
+
+.app {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ffffff;
+    /* Soft gray for a subtle effect */
+    text-align: center;
+    width: 90%;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+.card {
+    width: max(90%, 500px);
+    background: linear-gradient(135deg, #334155, #475569);
+    /* Muted gradient */
+    color: #f8fafc;
+    border-radius: 16px;
+    padding: 30px 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /*Smooth transition for card hover effect */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    /* Slight lift effect on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+    /* More pronounced shadow on hover */
+}
+
+.search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.search input {
+    border: 2px solid #555;
+    outline: none;
+    background: #e2e8f0;
+    /* Light gray background */
+    color: #334155;
+    /* Dark text */
+    padding: 10px 20px;
+    height: 50px;
+    border-radius: 24px;
+    width: 80%;
+    font-size: 18px;
+    transition: background 0.3s ease, border 0.3s ease;
+    /* Smooth transition for input focus */
+}
+
+.search input::placeholder {
+    color: #64748b;
+    /* Soft placeholder text */
+    font-style: italic;
+}
+
+/* .search input:hover {
+    background: #3e3b51;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    font-weight: bolder;
+} */
+
+.search button {
+    border: 0;
+    outline: 0;
+    background: #64748b;
+    /* Neutral button color */
+    color: #f8fafc;
+    border-radius: 50%;
+    width: 50px;
+    aspect-ratio: 1;
+    cursor: pointer;
+    font-size: 1.3rem;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+    /* Smooth transition for button hover */
+}
+
+.search button:hover {
+    background: #353f4e;
+    /* Slightly darker on hover */
+    transform: scale(1.05);
+    border: 2px solid #ffffff;
+}
+
+.weather {
+    position: absolute;
+    /* Take it out of the normal document flow */
+    transform: translate(0%, -50%) translateY(30px);
+    /* Initially lower and off-center */
+    visibility: hidden;
+    /* Invisible at the start */
+    opacity: 0;
+    /* Fully transparent */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    /* Smooth animation */
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 40px;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    /* Subtle translucent effect */
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.weather.show {
+    position: relative;
+    /* Back in flow after it's shown */
+    visibility: visible;
+    /* Make visible */
+    opacity: 1;
+    /* Fully opaque */
+    transform: translateY(0);
+    /* Smoothly slide into place */
+}
+
+.weather-icon {
+    width: 140px;
+}
+
+.weather h1 {
+    font-size: 60px;
+    font-weight: 500;
+    color: #ffffff;
+    /* Muted text */
+}
+
+.weather h2 {
+    font-size: 36px;
+    font-weight: 400;
+    margin-top: -10px;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    gap: 30px;
+}
+
+.col {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    gap: 15px;
+}
+
+.col img {
+    width: 40px;
+}
+
+.humidity,
+.wind p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.footer {
+    width: 100%;
+    background: #334155;
+    /* Muted footer background */
+    color: #ffffff;
+    /* Soft text */
+    text-align: center;
+    padding: 15px 0;
+    margin-top: auto;
+    font-size: 14px;
+    border-top: 1px solid #444;
+    /* Subtle top border */
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease;
+    /* Transition for footer background */
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.footer a {
+    color: #e2e8f0;
+    /* Light gray for links */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    /* Transition for link hover */
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    .app {
+        font-size: 1.5rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .weather h1 {
+        font-size: 1.8rem;
+    }
+
+    .weather h2 {
+        font-size: 1.2rem;
+    }
+
+    .details {
+        gap: 0.5rem;
+    }
+
+    .col {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .app {
+        font-size: 1.2rem;
+    }
+
+    .card {
+        padding: 1rem;
+    }
+
+    .search input {
+        font-size: 0.9rem;
+
+    }
+
+    .search button {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1rem;
+    }
+
+    .weather h1 {
+        font-size: 1.5rem;
+    }
+
+    .weather h2 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 435px) {
+    .app {
+        font-size: 1rem;
+        /* Adjusted font size for smaller screens */
+        /* padding: 10px 0; */
+    }
+
+    .card {
+        /* padding: 15px; Reduced padding for better fit */
+        width: 95%;
+        /* Ensures the card fits on narrow screens */
+        margin-bottom: 15px;
+    }
+
+    .search {
+        flex-direction: row;
+        /* Stack input and button vertically */
+        gap: 10px;
+        /* Space between stacked elements */
+    }
+
+    .search input {
+        font-size: 0.8rem;
+        /* Slightly smaller text */
+        width: 100%;
+        /* Full width on mobile */
+        padding: 10px;
+        /* Adjust padding for smaller input */
+        height: auto;
+        /* Flexible height */
+    }
+
+    .search button {
+        width: 45px;
+        /* Slightly smaller button */
+        height: 45px;
+        font-size: 1rem;
+    }
+
+    .weather {
+        flex-direction: column;
+        /* Stack elements vertically */
+        gap: 20px;
+        /* Space between elements */
+        padding: 10px;
+        /* Reduced padding */
+    }
+
+    .weather h1 {
+        font-size: 1.8rem;
+        /* Smaller font for headings */
+    }
+
+    .weather h2 {
+        font-size: 1.1rem;
+        margin-top: 0;
+        /* Remove extra space */
+    }
+
+    .details {
+        flex-direction: column;
+        /* Stack details */
+        gap: 15px;
+        /* Space between rows */
+        padding: 10px 0;
+    }
+
+    .col {
+        font-size: 0.8rem;
+        /* Adjust font size for smaller screens */
+        gap: 10px;
+    }
+
+    .col img {
+        width: 30px;
+        /* Smaller icons */
+    }
+
+    .footer {
+        font-size: 0.8rem;
+        /* Smaller footer text */
+        /* padding: 10px 0; */
+    }
+}
